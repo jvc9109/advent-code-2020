@@ -24,5 +24,5 @@ def find_three_numbers(data):
 
 with open("../data/day1.txt") as file:
     data = file.read()
-    result1 = find_two_numbers_criteria(data)
-    result2 = find_three_numbers(data)
+    find_two_numbers_criteria(data)
+    find_three_numbers(data)

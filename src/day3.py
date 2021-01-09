@@ -1,5 +1,4 @@
 def count_trees(lines, slope_right, slope_down):
-    open_mark = '.'
     tree_mark = '#'
     current_position = 0
     tree_count = 0
