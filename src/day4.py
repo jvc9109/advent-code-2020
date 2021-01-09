@@ -36,11 +36,11 @@ def is_valid_passport(passport):
         return False
     if (len(passport['eyr']) != 4) or  not (2020 <= int(passport['eyr']) <= 2030):
         return False
-    if len(passport['pid']) != 9:
+    if passport['ecl'] not in ['amb', 'blu', 'brn', 'gry', 'grn', 'hzl', 'oth']:
         return False
-    if passport['ecl'] not in ['amb', 'blu', 'brn', 'gry', 'hzl', 'oth']:
+    if not re.match(r'^#([a-fA-F0-9]{6})$', passport['hcl']):
         return False
-    if not re.match(r'^#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$', passport['hcl']):
+    if not re.match(r'^\d{9}$', passport['pid']):
         return False
     height = get_height_and_units(passport['hgt'])
     if height == None:
