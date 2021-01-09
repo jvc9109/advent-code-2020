@@ -21,8 +21,12 @@ def calculate_seat(seat_string):
 with open("../data/day5.txt") as file:
     seats = file.read().split('\n')
     seat_ids = []
+    seats_ordered = {key: [] for key in range(0,128)}
     for seat in seats:
         (row, column) = calculate_seat(seat)
         seat_ids.append((row*8) + column)
-        print(f'row: {row} column: {column}')
-    print(max(seat_ids))
+        seats_ordered[int(row)].append(column)
+    for row in seats_ordered:
+        if len(seats_ordered[row]) == 6:
+            print(f'row {row} with seats {seats_ordered[row]}')
+    print(f'max id: {max(seat_ids)}')
