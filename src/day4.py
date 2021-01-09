@@ -30,9 +30,6 @@ def is_valid_passport(passport):
         return False
     if number_of_keys == 7 and 'cid' in keys:
         return False
-
-    
-
     if (len(passport['byr']) != 4) or  not (1920 <= int(passport['byr']) <= 2002):
         return False
     if (len(passport['iyr']) != 4) or  not (2010 <= int(passport['iyr']) <= 2020):
