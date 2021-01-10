@@ -39,7 +39,7 @@ def get_branches_number(adapters):
             branches *= 4
         elif count_ones == 4:
             branches *= 7
-    print(branches)
+    return branches
 
 with open("data/day10.txt") as file:
     data = file.read()
@@ -51,4 +51,4 @@ with open("data/day10.txt") as file:
     diff_counter = get_jumps_count(adapters)
     print(diff_counter[1]*diff_counter[3])
     print(adapters)
-    get_branches_number(adapters)
+    print(get_branches_number(adapters))
