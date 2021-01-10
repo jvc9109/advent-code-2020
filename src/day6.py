@@ -15,7 +15,7 @@ def problem_1(lines):
     groups_yes.append(len(to_append))
     return groups_yes
 
-    
+
 def problem_2(lines):
     group_size = 0
     current_yes = []
@@ -38,7 +38,7 @@ def problem_2(lines):
     group_count = 0
     for key in yes_counter:
         if yes_counter[key] == group_size:
-            group_count =+ 1
+            group_count += 1
     groups_yes.append(group_count)
 
     return groups_yes
