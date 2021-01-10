@@ -20,19 +20,19 @@ def get_differences(adapters):
 
 def get_branches_number(adapters):
     differences = get_differences(adapters)
-    sequences = []
+    ones_chained = []
     count_ones = 0
     print(differences)
     for diff in differences:
         if diff == 3:
             if count_ones:
-                sequences.append(count_ones)
+                ones_chained.append(count_ones)
             count_ones = 0
         else:
             count_ones += 1
 
     branches = 1
-    for count_ones in sequences:
+    for count_ones in ones_chained:
         if count_ones == 2:
             branches *= 2
         elif count_ones == 3:
