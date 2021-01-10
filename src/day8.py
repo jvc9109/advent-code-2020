@@ -14,20 +14,6 @@ def process_instrucctions(idx, instruction_set, accu):
     
     return idx, instruction_action, accu
 
-def process_instrucctions_backwards(idx, instruction_set, accu):
-    inst_processing = instruction_set.split(' ')
-    instruction_action = inst_processing[0]
-    instruction_value = int(inst_processing[1])
-    if instruction_action == 'nop':
-        idx -= 1
-    if instruction_action == 'acc':
-        accu += instruction_value
-        idx -= 1
-    if instruction_action == 'jmp':
-        idx -= instruction_value
-    
-    return idx, instruction_action, accu
-
 def get_last_acc(instruction_set):
     accu = 0
     idx = 0
@@ -45,7 +31,6 @@ def get_last_acc(instruction_set):
         if instruction_len <= idx or idx < 0:
             processing = False
     return accu, had_loop
-
 
 def get_acc_with_debug(instruction_set):
     accu = 0
@@ -65,8 +50,6 @@ def get_acc_with_debug(instruction_set):
                 processing = False
         idx += 1
     return accu
-
-
 
 def debug_instrucction(instruction_set):
     inst_processing = instruction_set.split(' ')
