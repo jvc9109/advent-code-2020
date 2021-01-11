@@ -134,5 +134,5 @@ with open("data/day11.txt") as file:
     structure_data = []
     for row_number, row in enumerate(rows):
         structure_data.append([seat for seat in row])
-
+    problem_1(structure_data)
     problem_2(structure_data)
