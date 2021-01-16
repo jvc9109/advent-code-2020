@@ -50,5 +50,4 @@ def problem_1(numbers, max_turns):
 
 with open("data/day15.txt") as file:
     starting_numbers = [int(number) for number in file.read().split(',')]
-    run(starting_numbers, 30000000)
-    # problem_2(starting_numbers)
+    problem_1(starting_numbers, 30000000)
