@@ -1,7 +1,8 @@
 import re
 import copy
-import types
-def check_number_in_rule(rule, number):
+
+
+def check_number_in_rule(rule: list, number: int) -> bool:
     result = False
     for rule_range in rule:
         if rule_range[0] <= number <= rule_range[1]:
@@ -71,6 +72,17 @@ def clean_results(rule_to_check, set_possible_rules):
                 set_possible_rules = clean_results(possible_results[0], set_possible_rules)
     return set_possible_rules
 
+def obtain_rules(rules_str):
+    rules_pattern = r'(.*):\s+([0-9]+)-([0-9]+)\s+or\s+([0-9]+)-([0-9]+)'
+    rules = {}
+
+    for rule in rules_str:
+        rule_name, from_one, to_one, from_two, to_two = re.findall(rules_pattern, rule)[0]
+        valid_range = [(int(from_one), int(to_one)), (int(from_two), int(to_two))]
+        rules[rule_name] = valid_range
+    return rules
+
+
 current_ticket = [53,101,83,151,127,131,103,61,73,71,97,89,113,67,149,163,139,59,79,137]
 
 with open("data/day16.txt") as file:
@@ -79,16 +91,15 @@ with open("data/day16.txt") as file:
 with open('data/day16_rules.txt') as file:
     rules_str = file.read().split('\n')
 
-rules_pattern = r'(.*):\s+([0-9]+)-([0-9]+)\s+or\s+([0-9]+)-([0-9]+)'
-rules = {}
-for rule in rules_str:
-    rule_name, from_one, to_one, from_two, to_two = re.findall(rules_pattern, rule)[0]
-    valid_range = [(int(from_one), int(to_one)), (int(from_two), int(to_two))]
-    rules[rule_name] = valid_range
+
+rules = obtain_rules(rules_str)
 
 valid_tickets = get_valid_tickets(nearby_tickets, rules)
+
 rule_orders = guess_option(valid_tickets, rules)
+
 multip = 1
+
 for idx, rule_name in enumerate(rule_orders):
     if 'departure' in rule_name:
         multip *= current_ticket[idx]
