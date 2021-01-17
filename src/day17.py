@@ -1,7 +1,6 @@
-import re
-from collections import defaultdict, deque
 
-def get_neighbours(position):
+
+def get_neighbours(position: tuple) -> set:
     neighbours = set()
     for x in range(-1, 2):
         for y in range(-1, 2):
@@ -11,10 +10,10 @@ def get_neighbours(position):
                 neighbours.add((position[0] + x, position[1] + y, position[2] + z))
     return neighbours
 
-def count_active_neighbours(possible_neighbours, points):
+def count_active_neighbours(possible_neighbours: set, points: set) -> list:
     return [x for x in possible_neighbours if x in points]
 
-def read_region(input_list: list) -> dict:
+def read_region(input_list: list) -> set:
     points_active = set()
     for x, line in enumerate(input_list):
         for y, state in enumerate(line):
@@ -22,7 +21,7 @@ def read_region(input_list: list) -> dict:
                 points_active.add((x,y,0))
     return points_active
 
-def read_region_4_dim(input_list):
+def read_region_4_dim(input_list: list) -> set:
     points_active = set()
     for x, line in enumerate(input_list):
         for y, state in enumerate(line):
@@ -30,7 +29,7 @@ def read_region_4_dim(input_list):
                 points_active.add((x,y,0,0))
     return points_active
 
-def get_neighbours_4_dim(position):
+def get_neighbours_4_dim(position: tuple) -> set:
     neighbours = set()
     for x in range(-1, 2):
         for y in range(-1, 2):
@@ -41,7 +40,7 @@ def get_neighbours_4_dim(position):
                     neighbours.add((position[0] + x, position[1] + y, position[2] + z, position[3] + w))
     return neighbours
 
-def problem_1(active_points):
+def problem_1(active_points: set):
     for cycle in range(6):
         new_points = set()
         for point in active_points:
@@ -55,7 +54,7 @@ def problem_1(active_points):
         active_points = new_points
     print(len(active_points))
 
-def problem_2(active_points):
+def problem_2(active_points: set):
     for cycle in range(6):
         new_points = set()
         for point in active_points:
